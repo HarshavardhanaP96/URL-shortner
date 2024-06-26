@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tsc -b",
-    "start": "node index.js"
+    "build": "npm install && npm run build-ts",
+    "build-ts": "tsc",
+    "start": "node dist/index.js",
+    "prestart": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +23,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/mongoose": "^5.11.97",
-    "@types/node": "^20.14.9"
+    "@types/node": "^20.14.9",
+    "typescript": "^5.5.2"
   }
 }

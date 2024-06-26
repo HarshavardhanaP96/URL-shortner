@@ -10,7 +10,7 @@ function App() {
   const handleSubmit=(async(e:React.FormEvent)=>{
     e.preventDefault();
     try{
-      const response =await axios.post('http://localhost:5000/shorten',{originalUrl,customHash})
+      const response =await axios.post('https://url-shortner-5m7p.onrender.com/shorten',{originalUrl,customHash})
       setShortUrl(response.data.shortUrl);
     }catch(error){
       console.log('Error in creating the short url:',error);

@@ -28,7 +28,7 @@ const mongoURI=process.env.MONGODB_URI as string;
 
 mongoose.connect(mongoURI)
 .then(()=>console.log('connected to the db'))
-.catch((error)=>console.error('mongo db connection error:',error))
+.catch((error:string)=>console.error('mongo db connection error:',error))
 
 app.use(bodyParser.json())
 app.use(cors())

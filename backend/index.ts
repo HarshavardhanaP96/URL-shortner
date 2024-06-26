@@ -2,9 +2,9 @@ import express, {Request, Response} from 'express';
 import mongoose,{Document, Schema} from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import * as process from 'process';
 
 const app= express();
-
 
 app.listen(5000,()=>{
     console.log('listening at port 5000');

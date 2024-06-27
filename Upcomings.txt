@@ -1,13 +1,12 @@
 1. Valid Error message display.
-2. Copy button for generated short url.
-3. Styling.
-4. limiting the number of requests from particular client.
+2. loading
+3. Copy button for generated short url.
+4. Styling.
+5. limiting the number of requests from particular client.
 
 
 
 Process Explaination
-https://chatgpt.com/share/88091e7c-76cf-43e0-801e-9f50d7342755
-
 
 
 Creating a custom hash for URL shortening can be approached in various ways, each with its own trade-offs in terms of uniqueness, collision avoidance, and computational efficiency. The method provided is simple and effective for many use cases, but there are other methods that might be better depending on your specific requirements.
@@ -89,6 +88,3 @@ Creating a custom hash for URL shortening can be approached in various ways, eac
 
 The method you choose depends on the specific requirements and constraints of your application. For many applications, a simple custom hash like the one initially provided may be sufficient. For applications needing higher uniqueness, security, or shorter hash lengths, other methods like UUIDs, Base62 encoding, or cryptographic hash functions might be better suited.
 
-
-
-https://chatgpt.com/share/88091e7c-76cf-43e0-801e-9f50d7342755

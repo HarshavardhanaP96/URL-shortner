@@ -57,9 +57,9 @@ async function generateUniqueHash(url:string):Promise<string>{
 }
 
 app.post('/shorten',async(req:Request,res:Response)=>{
-    const {originalUrl, customHash:userHash}=req.body;
-    console.log('request received to shorten the url:',originalUrl);
-    
+    const {inputUrl, customHash:userHash}=req.body;
+    console.log('request received to shorten the url:',inputUrl);
+    const originalUrl=inputUrl.trim()
 
     try{
 
@@ -74,7 +74,12 @@ app.post('/shorten',async(req:Request,res:Response)=>{
             return res.json({"shortUrl":shortUrl});
         }
 
-        let Hash=userHash||await generateUniqueHash(originalUrl);
+        let Hash
+        if(userHash.trim()!=''){
+            Hash=userHash.trim();
+        }else{
+            Hash=await generateUniqueHash(originalUrl);
+        }
 
         const newURL = new URL({originalUrl, customHash:Hash});
         newURL.save();

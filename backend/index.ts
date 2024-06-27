@@ -93,7 +93,7 @@ app.post('/shorten',async(req:Request,res:Response)=>{
 
         const shortUrl = `${protocol}://${host}/${Hash}`;
         console.log('returning new short url:',shortUrl);
-        return res.json(shortUrl);
+        return res.json({"shortUrl":shortUrl});
 
     } catch{
         res.status(400).json('custom hash already taken try other')

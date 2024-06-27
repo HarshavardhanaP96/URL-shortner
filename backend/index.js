@@ -54,7 +54,9 @@ mongoose_1.default.connect(mongoURI)
     .then(() => console.log('connected to the db'))
     .catch((error) => console.error('mongo db connection error:', error));
 app.use(body_parser_1.default.json());
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: 'https://url-shortner-pi-eight.vercel.app'
+}));
 function customHash(url) {
     let hash = 0;
     for (let i = 0; i < url.length; i++) {
@@ -77,8 +79,9 @@ function generateUniqueHash(url) {
     });
 }
 app.post('/shorten', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { originalUrl, customHash: userHash } = req.body;
-    console.log('request received to shorten the url:', originalUrl);
+    const { inputUrl, customHash: userHash } = req.body;
+    console.log('request received to shorten the url:', inputUrl);
+    const originalUrl = inputUrl.trim();
     try {
         const existingUrl = yield URL.findOne({ originalUrl });
         if (existingUrl) {
@@ -88,7 +91,13 @@ app.post('/shorten', (req, res) => __awaiter(void 0, void 0, void 0, function* (
             console.log('Original URL exist. Returning shorturl:', shortUrl);
             return res.json({ "shortUrl": shortUrl });
         }
-        let Hash = userHash || (yield generateUniqueHash(originalUrl));
+        let Hash;
+        if (userHash.trim() != '') {
+            Hash = userHash.trim();
+        }
+        else {
+            Hash = yield generateUniqueHash(originalUrl);
+        }
         const newURL = new URL({ originalUrl, customHash: Hash });
         newURL.save();
         console.log('saved new url to the databse');

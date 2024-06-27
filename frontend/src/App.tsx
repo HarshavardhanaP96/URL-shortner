@@ -3,14 +3,14 @@ import axios from 'axios';
 import './App.css'
 
 function App() {
-  const [originalUrl, setOriginalUrl] = useState<string>('');
+  const [inputUrl, setInputUrl] = useState<string>('');
   const [customHash, setCustomHash]=useState<string>('');
   const [shortUrl, setShortUrl]=useState<string>('');
 
   const handleSubmit=(async(e:React.FormEvent)=>{
     e.preventDefault();
     try{
-      const response =await axios.post('https://url-shortner-5m7p.onrender.com/shorten',{originalUrl,customHash})
+      const response =await axios.post('https://url-shortner-5m7p.onrender.com/shorten',{inputUrl,customHash})
       setShortUrl(response.data.shortUrl);
     }catch(error){
       console.log('Error in creating the short url:',error);
@@ -25,8 +25,8 @@ function App() {
         <form onSubmit={handleSubmit}>
           <input type="text" 
             placeholder='Enter Original Url' 
-            value={originalUrl} 
-            onChange={(e)=>setOriginalUrl(e.target.value)} 
+            value={inputUrl} 
+            onChange={(e)=>setInputUrl(e.target.value)} 
             required 
           />
           <input type="text" 

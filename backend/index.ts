@@ -31,7 +31,9 @@ mongoose.connect(mongoURI)
 .catch((error:string)=>console.error('mongo db connection error:',error))
 
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors({
+    origin: 'https://url-shortner-pi-eight.vercel.app'
+}))
 
 function customHash(url:string):string {
     let hash=0;
